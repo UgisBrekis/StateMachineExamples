@@ -8,15 +8,31 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "StateBase",
+"language": "GDScript",
+"path": "res://addons/StateMachine/Scripts/StateBase.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://addons/StateMachine/Scripts/StateMachine.gd"
+} ]
 _global_script_class_icons={
-
+"StateBase": "",
+"StateMachine": ""
 }
 
 [application]
 
 config/name="State Machine examples project"
+run/main_scene="res://Example01/Example01.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "StateMachine" )
 
 [rendering]
 

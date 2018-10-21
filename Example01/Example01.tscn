@@ -1,0 +1,208 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/StateMachine/Scripts/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://addons/StateMachine/Resources/StateMachineGraph.gd" type="Script" id=2]
+[ext_resource path="res://addons/StateMachine/Resources/State.gd" type="Script" id=3]
+[ext_resource path="res://Example01/example_01.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=2]
+
+script = ExtResource( 3 )
+name = "Red"
+state_script = ExtResource( 4 )
+offset = Vector2( 220, 20 )
+properties = [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "color_rect_path",
+"type": 15,
+"usage": 8199,
+"value": NodePath("../ColorRect")
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "tween_path",
+"type": 15,
+"usage": 8199,
+"value": NodePath("../Tween")
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "target_color",
+"type": 14,
+"usage": 8199,
+"value": Color( 0.964706, 0.427451, 0.427451, 1 )
+}, {
+"class_name": "",
+"hint": 1,
+"hint_string": "0,10",
+"name": "duration",
+"type": 3,
+"usage": 8199,
+"value": 0.3
+} ]
+
+[sub_resource type="Resource" id=3]
+
+script = ExtResource( 3 )
+name = "Green"
+state_script = ExtResource( 4 )
+offset = Vector2( 220, 140 )
+properties = [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "color_rect_path",
+"type": 15,
+"usage": 8199,
+"value": NodePath("../ColorRect")
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "tween_path",
+"type": 15,
+"usage": 8199,
+"value": NodePath("../Tween")
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "target_color",
+"type": 14,
+"usage": 8199,
+"value": Color( 0.682353, 0.964706, 0.427451, 1 )
+}, {
+"class_name": "",
+"hint": 1,
+"hint_string": "0,10",
+"name": "duration",
+"type": 3,
+"usage": 8199,
+"value": 1.0
+} ]
+
+[sub_resource type="Resource" id=4]
+
+script = ExtResource( 3 )
+name = "Blue"
+state_script = ExtResource( 4 )
+offset = Vector2( 220, 260 )
+properties = [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "color_rect_path",
+"type": 15,
+"usage": 8199,
+"value": NodePath("../ColorRect")
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "tween_path",
+"type": 15,
+"usage": 8199,
+"value": NodePath("../Tween")
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "target_color",
+"type": 14,
+"usage": 8199,
+"value": Color( 0.427451, 0.686275, 0.964706, 1 )
+}, {
+"class_name": "",
+"hint": 1,
+"hint_string": "0,10",
+"name": "duration",
+"type": 3,
+"usage": 8199,
+"value": 2.0
+} ]
+
+[sub_resource type="Resource" id=1]
+
+script = ExtResource( 2 )
+entry_node_offset = Vector2( 20, 20 )
+start_state_id = 0
+states = [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
+transitions = [ {
+"from_slot_index": 0,
+"from_state_index": 1,
+"to_slot_index": 0,
+"to_state_index": 2
+}, {
+"from_slot_index": 0,
+"from_state_index": 0,
+"to_slot_index": 0,
+"to_state_index": 1
+}, {
+"from_slot_index": 0,
+"from_state_index": 2,
+"to_slot_index": 0,
+"to_state_index": 0
+} ]
+
+[node name="Control" type="Control"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 1 )
+_sections_unfolded = [ "Mouse" ]
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Click any mouse button to change background color"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Tween" type="Tween" parent="."]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+_sections_unfolded = [ "State properties" ]
+autostart = true
+graph = SubResource( 1 )
+
