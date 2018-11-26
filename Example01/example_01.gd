@@ -1,9 +1,5 @@
 extends StateBase
 
-enum transitions {
-	OnClicked
-}
-
 export(NodePath) var color_rect_path
 export(NodePath) var tween_path
 export(Color) var target_color
@@ -13,8 +9,8 @@ var color_rect : ColorRect
 var tween : Tween
 
 func on_start(p_args = []):
-	color_rect = get_parent().get_node(color_rect_path) as ColorRect
-	tween = get_parent().get_node(tween_path) as Tween
+	color_rect = get_node(color_rect_path) as ColorRect
+	tween = get_node(tween_path) as Tween
 	
 	# Default start color
 	var start_color = Color.black
@@ -31,4 +27,4 @@ func on_start(p_args = []):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			invoke_transition(OnClicked, [color_rect.color])
+			invoke_transition("OnClicked", [color_rect.color])

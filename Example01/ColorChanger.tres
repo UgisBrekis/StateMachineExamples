@@ -1,0 +1,84 @@
+[gd_resource type="Resource" load_steps=11 format=2]
+
+[ext_resource path="res://addons/StateMachine/Resources/StateMachineGraph.gd" type="Script" id=1]
+[ext_resource path="res://addons/StateMachine/Resources/State.gd" type="Script" id=2]
+[ext_resource path="res://Example01/example_01.gd" type="Script" id=3]
+[ext_resource path="res://addons/StateMachine/Resources/Transition.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+
+script = ExtResource( 2 )
+label = "Red"
+state_script = ExtResource( 3 )
+outputs = PoolStringArray( "OnClicked" )
+offset = Vector2( 220, 40 )
+properties = {
+"color_rect_path": NodePath("../ColorRect"),
+"duration": 1.0,
+"target_color": Color( 0.894118, 0.25098, 0.309804, 1 ),
+"tween_path": NodePath("../Tween")
+}
+
+[sub_resource type="Resource" id=2]
+
+script = ExtResource( 2 )
+label = "Green"
+state_script = ExtResource( 3 )
+outputs = PoolStringArray( "OnClicked" )
+offset = Vector2( 220, 160 )
+properties = {
+"color_rect_path": NodePath("../ColorRect"),
+"duration": 0.5,
+"target_color": Color( 0.498039, 0.894118, 0.25098, 1 ),
+"tween_path": NodePath("../Tween")
+}
+
+[sub_resource type="Resource" id=3]
+
+script = ExtResource( 2 )
+label = "Blue"
+state_script = ExtResource( 3 )
+outputs = PoolStringArray( "OnClicked" )
+offset = Vector2( 220, 280 )
+properties = {
+"color_rect_path": NodePath("../ColorRect"),
+"duration": 0.25,
+"target_color": Color( 0.2, 0.584314, 0.866667, 1 ),
+"tween_path": NodePath("../Tween")
+}
+
+[sub_resource type="Resource" id=4]
+
+script = ExtResource( 4 )
+from_state = SubResource( 1 )
+from_slot_index = 0
+to_state = SubResource( 2 )
+to_slot_index = 0
+reroute_points = PoolVector2Array( 340, 140, 220, 140 )
+
+[sub_resource type="Resource" id=5]
+
+script = ExtResource( 4 )
+from_state = SubResource( 2 )
+from_slot_index = 0
+to_state = SubResource( 3 )
+to_slot_index = 0
+reroute_points = PoolVector2Array( 340, 260, 220, 260 )
+
+[sub_resource type="Resource" id=6]
+
+script = ExtResource( 4 )
+from_state = SubResource( 3 )
+from_slot_index = 0
+to_state = SubResource( 1 )
+to_slot_index = 0
+reroute_points = PoolVector2Array( 340, 400, 200, 400 )
+
+[resource]
+
+script = ExtResource( 1 )
+entry_node_offset = Vector2( 40, 40 )
+start_state_id = 0
+states = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]
+transitions = [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ]
+

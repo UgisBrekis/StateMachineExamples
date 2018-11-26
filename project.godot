@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://addons/StateMachine/Scripts/StateMachine.gd"
+"path": "res://addons/StateMachine/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "StateBase": "",
